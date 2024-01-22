@@ -1,0 +1,43 @@
+.centerIconText {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.pageContent {
+	padding: 24px;
+	padding-left: 36px;
+	padding-right: 36px;
+	height: calc(100vh - 68px);
+	    background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+.startEndComp {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+  .title{
+    font-size:48px;
+    color:#1e90ff
+}
+
+.textImageCenter{
+    display:flex;
+    align-items: center;
+    gap:10px;
+}
+
+.textOverflow{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.textOverflowU {
+    white-space: normal;
+}
