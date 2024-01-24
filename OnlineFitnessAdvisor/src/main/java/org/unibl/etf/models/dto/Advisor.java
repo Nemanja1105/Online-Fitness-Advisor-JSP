@@ -1,8 +1,9 @@
 package org.unibl.etf.models.dto;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Advisor {
+public class Advisor implements Serializable{
     private Long id;
     private String username;
     private String password;

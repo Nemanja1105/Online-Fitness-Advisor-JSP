@@ -37,6 +37,9 @@ else
 			
 		}
 	}
+	else if("send".equals(action)){
+		session.setAttribute("notification", new Notification("Email successfully sent",true));
+	}
 	advisorQuestionBean.findAll();
 }
 %>
@@ -55,7 +58,7 @@ else
 	crossorigin="anonymous"></script>
 </head>
 <body>
-	<jsp:include page="navbar.jsp"></jsp:include>
+	<jsp:include page="WEB-INF/navbar.jsp"></jsp:include>
 	<div class="pageContent">
 		<div class="d-flex align-items-center gap-2  w-100 ">
 			<span class="fw-bold font-italic m-0 title">Messages</span> <img
@@ -86,7 +89,7 @@ else
 						<div class="d-flex  justify-content-between">
 							<div class="d-flex flex-column flex-md-row gap-3 align-items-center">
 
-								<img src="images/profileIcon.png"
+								<img src="<%=tmp.getProfileImage() %>"
 									style="height: 40px; width: 40px;" alt="Avatar"
 									class="img-fluid rounded-circle">
 								<div class="fs-5 fw-semibold"><%=tmp.getClientName() %> <%=tmp.getClientSurname() %></div>
@@ -110,7 +113,7 @@ else
 						<div class="collapse <%=id==tmp.getId()&&collapse?"show":"" %> mt-2" id="messase<%=tmp.getId()%>">
 						<%=tmp.getMessage() %>
 						<div class="d-flex justify-content-center">
-						<a class="btn btn-outline-warning fw-semibold textImageCenter mt-2">Reply<img src="images/replyIcon.png"/></a>
+						<a class="btn btn-outline-warning fw-semibold textImageCenter mt-2" href="sendmessage.jsp?id=<%=tmp.getId()%>">Reply<img src="images/replyIcon.png"/></a>
 						</div>
 						</div>
 
@@ -123,6 +126,6 @@ else
 		</div>
 
 	</div>
-	<jsp:include page="Notification.jsp"></jsp:include>
+	<jsp:include page="WEB-INF/Notification.jsp"></jsp:include>
 </body>
 </html>

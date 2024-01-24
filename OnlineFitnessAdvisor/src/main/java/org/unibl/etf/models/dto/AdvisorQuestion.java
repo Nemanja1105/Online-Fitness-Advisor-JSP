@@ -1,9 +1,12 @@
 package org.unibl.etf.models.dto;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
-public class AdvisorQuestion {
+import org.eclipse.jdt.internal.compiler.ast.ThisReference;
+
+public class AdvisorQuestion implements Serializable{
 	private Long id;
 	private Date createdAt;
 	private String message;
@@ -14,13 +17,16 @@ public class AdvisorQuestion {
 	private String clientName;
 	private String clientSurname;
 	private Long clientImageId;
+	private String clientEmail;
+	private static final String IMAGE_URL="http://localhost:9001/api/v1/images/";
 	
 	public AdvisorQuestion() {
 		super();
 	}
 
 	public AdvisorQuestion(Long id, Date createdAt, String message, boolean seen, Long fitnessProgramId,
-			String fitnessProgramName, Long senderId, String clientName, String clientSurname, Long clientImageId) {
+			String fitnessProgramName, Long senderId, String clientName, String clientSurname, Long clientImageId,
+			String clientEmail) {
 		super();
 		this.id = id;
 		this.createdAt = createdAt;
@@ -32,6 +38,17 @@ public class AdvisorQuestion {
 		this.clientName = clientName;
 		this.clientSurname = clientSurname;
 		this.clientImageId = clientImageId;
+		this.clientEmail=clientEmail;
+	}
+	
+	
+
+	public String getClientEmail() {
+		return clientEmail;
+	}
+
+	public void setClientEmail(String clientEmail) {
+		this.clientEmail = clientEmail;
 	}
 
 	public Long getId() {
@@ -100,6 +117,12 @@ public class AdvisorQuestion {
 
 	public String getClientSurname() {
 		return clientSurname;
+	}
+	
+	public String getProfileImage() {
+		if(this.clientImageId!=0)
+			return IMAGE_URL+this.clientImageId;
+		return "images/profileIcon.png";
 	}
 
 	public void setClientSurname(String clientSurname) {

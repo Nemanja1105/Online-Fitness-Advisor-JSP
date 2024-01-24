@@ -1,11 +1,13 @@
 package org.unibl.etf.models.beans;
 
+import java.io.Serializable;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.unibl.dao.impl.AdvisorDAOImpl;
 import org.unibl.etf.dao.AdvisorDAO;
 import org.unibl.etf.models.dto.Advisor;
 
-public class AdvisorBean {
+public class AdvisorBean implements Serializable {
 	private Advisor advisor;
 	private boolean isLoggedIn = false;
 	private AdvisorDAO advisorDAO;

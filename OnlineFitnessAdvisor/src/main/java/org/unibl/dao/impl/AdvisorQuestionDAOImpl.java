@@ -24,7 +24,8 @@ public class AdvisorQuestionDAOImpl implements AdvisorQuestionDAO{
 			+ "    a.sender_id,\r\n"
 			+ "    c.name as client_name,\r\n"
 			+ "    c.surname as client_surname,\r\n"
-			+ "    c.image_id as client_image_id\r\n"
+			+ "    c.image_id as client_image_id,\r\n"
+			+ "    c.email as client_email\r\n"
 			+ "FROM advisor_question a\r\n"
 			+ "inner join client c on a.sender_id = c.id\r\n"
 			+ "inner join fitness_program fp on fp.id=a.fitness_program_id;";
@@ -39,12 +40,11 @@ public class AdvisorQuestionDAOImpl implements AdvisorQuestionDAO{
 			+ "    a.sender_id,\r\n"
 			+ "    c.name as client_name,\r\n"
 			+ "    c.surname as client_surname,\r\n"
-			+ "    c.image_id as client_image_id\r\n"
+			+ "    c.image_id as client_image_id,\r\n"
+			+ "    c.email as client_email\r\n"
 			+ "FROM advisor_question a\r\n"
 			+ "inner join client c on a.sender_id = c.id\r\n"
-			+ "inner join fitness_program fp on fp.id=a.fitness_program_id\r\n"
-			+ "where a.message like ? \r\n"
-			+ ";";
+			+ "inner join fitness_program fp on fp.id=a.fitness_program_id where a.message like ?;";
 	
 	private static final String UPDATE_SEEN_QUERY="update advisor_question set seen=1 where id=?";
 	
@@ -65,7 +65,7 @@ public class AdvisorQuestionDAOImpl implements AdvisorQuestionDAO{
 			statement = DBUtil.prepareStatement(connection, FIND_ALL_QUERY, false, new Object[0]);
 			resultSet = statement.executeQuery();
 			while(resultSet.next()) {
-				result.add(new AdvisorQuestion(resultSet.getLong(1), resultSet.getDate(2), resultSet.getString(3),resultSet.getBoolean(4),resultSet.getLong(5),resultSet.getString(6),resultSet.getLong(7),resultSet.getString(8),resultSet.getString(9),resultSet.getLong(10)));
+				result.add(new AdvisorQuestion(resultSet.getLong(1), resultSet.getDate(2), resultSet.getString(3),resultSet.getBoolean(4),resultSet.getLong(5),resultSet.getString(6),resultSet.getLong(7),resultSet.getString(8),resultSet.getString(9),resultSet.getLong(10),resultSet.getString(11)));
 			}
 			
 		} finally {
@@ -87,7 +87,9 @@ public class AdvisorQuestionDAOImpl implements AdvisorQuestionDAO{
 			statement = DBUtil.prepareStatement(connection, SEARCH_QUERY, false,values);
 			resultSet = statement.executeQuery();
 			while(resultSet.next()) {
-				result.add(new AdvisorQuestion(resultSet.getLong(1), resultSet.getDate(2), resultSet.getString(3),resultSet.getBoolean(4),resultSet.getLong(5),resultSet.getString(6),resultSet.getLong(7),resultSet.getString(8),resultSet.getString(9),resultSet.getLong(10)));
+				result.add(new AdvisorQuestion(resultSet.getLong(1), resultSet.getDate(2), resultSet.getString(3),
+						resultSet.getBoolean(4),resultSet.getLong(5),resultSet.getString(6),resultSet.getLong(7),
+						resultSet.getString(8),resultSet.getString(9),resultSet.getLong(10),resultSet.getString(11)));
 			}
 			
 		} finally {
